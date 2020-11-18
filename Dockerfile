@@ -1,4 +1,4 @@
-FROM rhel8/python-36:latest
+FROM registry.redhat.io/rhel8/python-36:latest
 
 # create a non-privileged user to use at runtime
 RUN groupadd -g 50 -S pgadmin \
