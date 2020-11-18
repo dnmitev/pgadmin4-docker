@@ -1,15 +1,14 @@
 FROM registry.redhat.io/rhel8/python-36:latest
 
 # create a non-privileged user to use at runtime
-RUN groupadd -g 51 -r pgadmin \
- && useradd -D -S -h /pgadmin -s /sbin/nologin -u 1000 -G pgadmin pgadmin \
- && mkdir -p /pgadmin/config /pgadmin/storage \
- && chown -R 1000:51 /pgadmin
+# RUN groupadd -g 51 -r pgadmin \
+#  && useradd -D -S -h /pgadmin -s /sbin/nologin -u 1000 -G pgadmin pgadmin \
+#  && mkdir -p /pgadmin/config /pgadmin/storage \
+#  && chown -R 1000:51 /pgadmin
 
 # Install postgresql tools for backup/restore
 RUN yum install -y libedit postgresql \
- && cp /usr/bin/psql /usr/bin/pg_dump /usr/bin/pg_dumpall /usr/bin/pg_restore /usr/local/bin/ \
- && apk del postgresql
+ && cp /usr/bin/psql /usr/bin/pg_dump /usr/bin/pg_dumpall /usr/bin/pg_restore /usr/local/bin/ 
 
 RUN yum install postgresql-dev libffi-dev
 
